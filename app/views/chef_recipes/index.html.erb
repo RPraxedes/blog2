@@ -1,0 +1,5 @@
+<h1>Recipe Index</h1>
+<%= @recipes.each do |recipe| %>
+  <h4><%= recipe.name %></h4>
+  <h4><%= recipe.description %></h4>
+<% end %>
