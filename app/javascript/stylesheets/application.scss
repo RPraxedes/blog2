@@ -1,0 +1,22 @@
+@import '~bootstrap/scss/bootstrap';
+
+$navbar-light-bg: blue;
+
+#logo {
+  float: left;
+  text-transform: uppercase;
+}
+
+#logo:hover {
+  color: blue;
+  text-decoration: none;
+}
+
+.jumbotron {
+  height: 300px;
+}
+
+.footer {
+  background-color: #c9c9c9;
+  height: 400px;
+}
