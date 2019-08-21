@@ -1,4 +1,5 @@
 class ChefProfilesController < ApplicationController
+  before_action :find_chef, only: [:show, :edit, :update, :destroy]
   def new
     @chef = ChefProfile.new
   end
@@ -19,7 +20,7 @@ class ChefProfilesController < ApplicationController
   private
 
   def find_chef
-    @recipe = ChefRecipe.find(params[:id])
+    @chef = ChefProfile.find(params[:id])
   end
 
   def chef_params
