@@ -1,5 +1,9 @@
 class ChefProfilesController < ApplicationController
   before_action :find_chef, only: [:show, :edit, :update, :destroy]
+
+  def show
+  end
+
   def new
     @chef = ChefProfile.new
   end
@@ -12,9 +16,6 @@ class ChefProfilesController < ApplicationController
     else
       render 'new'
     end
-  end
-
-  def show
   end
 
   private
