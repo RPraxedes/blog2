@@ -1,0 +1,20 @@
+<%= render 'shared/errors', obj: @recipe %>
+
+<div class="row justify-content-center">
+  <div class="col-md-8">
+    <%= form_for(@recipe, :html => {class: "form", role: "form"}) do |f| %>
+      <div class="form-group">
+        <%= f.label :name %>
+        <%= f.text_field :name, class: "form-control", placeholder: "Name of recipe", autofocus: true %>
+      </div>
+      <div class="form-group">
+        <%= f.label :description %>
+        <%= f.text_area :description, rows: 10, class: "form-control", placeholder: "Description of recipe" %>
+      </div>
+      <div class="form-group">
+        <%= f.submit class: "btn btn-primary btn-lg" %>
+        <%= link_to "Cancel and go back to recipe list", chef_recipes_path %>
+      </div>
+    <% end %>
+  </div>
+</div>

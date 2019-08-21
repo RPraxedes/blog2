@@ -1,0 +1,16 @@
+<% if @recipe.errors.any? %>
+  <div class="row">
+    <div class="col-md-8">
+      <div class="alert alert-danger">
+        <p class="alert-body">
+          <strong><%= pluralize(@recipe.errors.count, "error") %> prohibited this <%= @recipe.class %> from being created:</strong>
+        </p>
+        <ul>
+        <% @recipe.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+<% end %>
