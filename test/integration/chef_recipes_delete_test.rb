@@ -2,7 +2,7 @@ require 'test_helper'
 
 class ChefRecipesDeleteTest < ActionDispatch::IntegrationTest
   def setup
-    @chef = ChefProfile.create(chefname: "name", email: "mail@example.com")
+    @chef = ChefProfile.create(chefname: "name", email: "mail@example.com", password: "password", password_confirmation: "password")
     @recipe = ChefRecipe.create(name: "veg", description: "veggies", chef_profile_id: @chef.id)
     @recipe2 = @chef.chef_recipes.build(name: "chicken", description: "chicken")
     @recipe2.save
