@@ -1,0 +1,8 @@
+<div class="row justfiy-content-center">
+  <div class="col-md-8">
+    <h1>Recipe Name: <%= @recipe.name.capitalize %> </h1>
+    <h4>Recipe Description:</h4>
+    <%= simple_format(@recipe.description) %>
+    <p>Created by <%= @recipe.chef_profile.chefname %></p>
+  </div>
+</div>
