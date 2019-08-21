@@ -4,5 +4,9 @@
     <h4>Recipe Description:</h4>
     <%= simple_format(@recipe.description) %>
     <p>Created by <%= @recipe.chef_profile.chefname %></p>
+    <div class="recipe-actions">
+      <%= link_to "Edit", edit_chef_recipe_path(@recipe), class: "btn btn-warning" %>
+      <%= link_to "Delete", chef_recipe_path(@recipe), method: :delete, data: { confirm: "Are you sure you want to wa ha ha this recipe?" }, class: "btn btn-danger" %>
+    </div>
   </div>
 </div>

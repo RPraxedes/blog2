@@ -13,5 +13,5 @@
 import '../javascripts';
 import '../stylesheets/application.scss';
 
-const importAll = (r) => r.keys().map(r)
-importAll(require.context('../assets/images', true, /\.(png|jpe?g|svg)$/))
+// const importAll = (r) => r.keys().map(r)
+// importAll(require.context('../assets/images', true, /\.(png|jpe?g|svg)$/))

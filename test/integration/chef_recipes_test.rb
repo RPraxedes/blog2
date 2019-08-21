@@ -26,6 +26,8 @@ class ChefRecipesText < ActionDispatch::IntegrationTest
     assert_match @recipe.name, response.body
     assert_match @recipe.description, response.body
     assert_match @chef.chefname, response.body
+    assert_select "a[href=?]", edit_chef_recipe_path(@recipe), text: "Edit"
+    assert_select "a[href=?]", chef_recipe_path(@recipe), text: "Delete"
   end
 
   test "create new valid recipe" do
