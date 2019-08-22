@@ -14,8 +14,9 @@ class ChefProfile < ApplicationRecord
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
 
-  has_many :chef_recipes
+  has_many :chef_recipes, dependent: :destroy
   has_secure_password
   validates :password, presence: true, length: { minimum: 5 }, allow_nil: true
+  default_scope -> { order(chefname: :asc) }
 
 end

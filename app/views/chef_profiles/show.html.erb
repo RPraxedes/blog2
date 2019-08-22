@@ -1,3 +1,5 @@
 <h1>Chef <%= @chef.chefname %>'s Profile</h1>
 
 <%= render 'chef_recipes/recipe', obj: @chef.chef_recipes %>
+<%= link_to "New recipe", new_chef_recipe_path, class: "btn btn-primary" %>
+<%= link_to "Back to Chef List", chef_profiles_path, class: "btn btn-primary" %>

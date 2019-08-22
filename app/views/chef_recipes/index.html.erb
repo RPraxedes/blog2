@@ -1,13 +1,8 @@
 <h1>Recipe Index</h1>
-<% @recipes.each do |recipe| %>
-  <div class="row justify-content-center">
-    <div class="col-md-8">
-      <div class="card">
-        <div class="card-body">
-          <h4 class="card-title"><%= link_to recipe.name, chef_recipe_path(recipe) %></h4>
-          <p class="card-text"><%= recipe.description %></p>
-        </div>
-      </div>
-    </div>
-  </div>
-<% end %>
+<div class="row justify-content-center">
+  <%= will_paginate(@chef_recipes, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer) %>
+</div>
+<%= render 'recipe', obj: @chef_recipes %>
+<div class="row justify-content-center">
+  <%= will_paginate(@chef_recipes, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer) %>
+</div>

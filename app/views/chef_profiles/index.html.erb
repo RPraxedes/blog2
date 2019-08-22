@@ -1,0 +1,15 @@
+<h1>Chef Profiles Index</h1>
+<div class="row justify-content-center">
+  <%= will_paginate(@chef_profiles, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer) %>
+</div>
+<% @chef_profiles.each do |person| %>
+  <div class="card">
+    <h3 class="card-title"><%= person.chefname %></h3>
+    <p class="card-body"><%= person.email %></p>
+    <%= link_to "View Profile", chef_profile_path(person), class: "btn btn-primary" %>
+    <%= link_to "Delete", chef_profile_path(person), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+  </div>
+<% end %>
+<div class="row justify-content-center">
+  <%= will_paginate(@chef_profiles, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer) %>
+</div>

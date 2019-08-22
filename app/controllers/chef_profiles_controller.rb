@@ -1,6 +1,10 @@
 class ChefProfilesController < ApplicationController
   before_action :find_chef, only: [:show, :edit, :update, :destroy]
 
+  def index
+    @chef_profiles = ChefProfile.paginate(page: params[:page], per_page: 5)
+  end
+
   def show; end
 
   def new
@@ -26,6 +30,12 @@ class ChefProfilesController < ApplicationController
     else
       render 'edit'
     end
+  end
+
+  def destroy
+    @chef.destroy
+    flash[:success] = "Chef profile deleted successfully"
+    redirect_to chef_profiles_path
   end
 
   private

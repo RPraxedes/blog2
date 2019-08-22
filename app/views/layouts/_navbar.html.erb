@@ -18,9 +18,8 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <%= link_to "Create a new recipe", new_chef_recipe_path, class: "dropdown-item" %>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
+          <%= link_to "All Chef Profiles", chef_profiles_path, class: "dropdown-item" %>
+          <%= link_to "All Chef Recipes", chef_recipes_path, class: "dropdown-item" %>
         </div>
       </li>
       <li class="nav-item">

@@ -1,19 +1,4 @@
-<% if @chef.errors.any? %>
-  <div class="row">
-    <div class="col-md-8">
-      <div class="alert alert-danger">
-        <p class="alert-body">
-          <strong><%= pluralize(@chef.errors.count, "error") %> prohibited this <%= @chef.class %> from being created:</strong>
-        </p>
-        <ul>
-        <% @chef.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-        </ul>
-      </div>
-    </div>
-  </div>
-<% end %>
+<%= render 'shared/errors', obj: @chef %>
 
 <div class="row justify-content-center">
   <div class="col-md-8">

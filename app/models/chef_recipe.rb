@@ -10,4 +10,6 @@ class ChefRecipe < ApplicationRecord
   validates :chef_profile_id, presence: true
 
   belongs_to :chef_profile
+
+  default_scope -> { order(name: :asc) }
 end

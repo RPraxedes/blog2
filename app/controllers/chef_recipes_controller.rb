@@ -1,7 +1,7 @@
 class ChefRecipesController < ApplicationController
   before_action :find_recipe, only: [:show, :edit, :destroy, :update]
   def index
-    @recipes = ChefRecipe.all
+    @chef_recipes = ChefRecipe.paginate(page: params[:page], per_page: 5)
   end
 
   def show
