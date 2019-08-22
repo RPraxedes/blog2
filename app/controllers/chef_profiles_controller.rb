@@ -5,7 +5,9 @@ class ChefProfilesController < ApplicationController
     @chef_profiles = ChefProfile.paginate(page: params[:page], per_page: 5)
   end
 
-  def show; end
+  def show
+    @chef_recipes = @chef.chef_recipes.paginate(page: params[:page], per_page: 5)
+  end
 
   def new
     @chef = ChefProfile.new
