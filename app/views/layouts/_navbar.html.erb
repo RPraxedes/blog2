@@ -9,19 +9,22 @@
       <li class="nav-item active">
         <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
+      <li class="nav-item"><%= link_to "All Chef Recipes", chef_recipes_path, class: "nav-link" %></li>
+      <% if logged_in? %>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown
+          <%= current_chef_profile.chefname %>'s Profile
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <%= link_to "View Profile", chef_profile_path(current_chef_profile), class: "dropdown-item" %>
           <%= link_to "Create a new recipe", new_chef_recipe_path, class: "dropdown-item" %>
           <%= link_to "All Chef Profiles", chef_profiles_path, class: "dropdown-item" %>
-          <%= link_to "All Chef Recipes", chef_recipes_path, class: "dropdown-item" %>
+          <%= link_to "Log out", logout_path, method: :delete, class: "dropdown-item" %>
         </div>
       </li>
+      <% else %>
+        <li><%= link_to "Log in", login_path, class: "nav-link" %></li>
+      <% end %>
       <li class="nav-item">
         <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
       </li>

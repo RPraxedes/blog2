@@ -1,5 +1,7 @@
 class ChefRecipesController < ApplicationController
   before_action :find_recipe, only: [:show, :edit, :destroy, :update]
+  before_action :require_user, except: [:index, :show]
+  before_action :require_same_user, only: [:edit, :destroy, :update]
   def index
     @chef_recipes = ChefRecipe.paginate(page: params[:page], per_page: 5)
   end
@@ -13,7 +15,7 @@ class ChefRecipesController < ApplicationController
 
   def create
     @recipe = ChefRecipe.new(recipe_params)
-    @recipe.chef_profile = ChefProfile.first  # no user auth yet
+    @recipe.chef_profile = current_chef_profile
     if @recipe.save
         flash[:success] = "Your recipe was created successfully!"
         redirect_to chef_recipe_path(@recipe)
@@ -50,4 +52,10 @@ class ChefRecipesController < ApplicationController
     params.require(:chef_recipe).permit(:name, :description)
   end
 
+  def require_same_user
+    if current_chef_profile != @recipe.chef_profile
+      flash[:danger] = "You can only modify your own recipes."
+      redirect_to chef_recipes_path
+    end
+  end
 end

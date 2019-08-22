@@ -1,5 +1,6 @@
 class ChefProfilesController < ApplicationController
   before_action :find_chef, only: [:show, :edit, :update, :destroy]
+  before_action :require_same_user, only: [:edit, :destroy, :update]
 
   def index
     @chef_profiles = ChefProfile.paginate(page: params[:page], per_page: 5)
@@ -16,6 +17,7 @@ class ChefProfilesController < ApplicationController
   def create
     @chef = ChefProfile.new(chef_params)
     if @chef.save
+      session[:chef_id] = @chef.id  # to log in as soon as user has signed up
       flash[:success] = "Welcome #{@chef.chefname}!"
       redirect_to chef_profile_path(@chef)
     else
@@ -48,5 +50,12 @@ class ChefProfilesController < ApplicationController
 
   def chef_params
     params.require(:chef_profile).permit(:chefname, :email, :password, :password_confirmation)
+  end
+
+  def require_same_user
+    if current_chef_profile != @chef_profile
+      flash[:danger] = "You can only modify your own profile."
+      redirect_to chef_profiles_path
+    end
   end
 end

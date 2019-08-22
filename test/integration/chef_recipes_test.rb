@@ -21,6 +21,7 @@ class ChefRecipesText < ActionDispatch::IntegrationTest
   end
 
   test "should get recipes show" do
+    sign_in_as(@chef, "password")
     get chef_recipe_path(@recipe)
     assert_template 'chef_recipes/show'
     assert_match @recipe.name, response.body
@@ -31,6 +32,7 @@ class ChefRecipesText < ActionDispatch::IntegrationTest
   end
 
   test "create new valid recipe" do
+    sign_in_as(@chef, "password")
     get new_chef_recipe_path
     assert_template 'chef_recipes/new'
     name_of_recipe = "Chicken"
@@ -44,6 +46,7 @@ class ChefRecipesText < ActionDispatch::IntegrationTest
   end
 
   test "reject new invalid recipes" do
+    sign_in_as(@chef, "password")
     get new_chef_recipe_path
     assert_template 'chef_recipes/new'
     assert_no_difference 'ChefRecipe.count' do

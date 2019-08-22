@@ -5,8 +5,10 @@
     <%= simple_format(@recipe.description) %>
     <p>Created by <%= @recipe.chef_profile.chefname %></p>
     <div class="recipe-actions">
+      <% if logged_in? && current_chef_profile == @recipe.chef_profile %>
       <%= link_to "Edit", edit_chef_recipe_path(@recipe), class: "btn btn-warning" %>
       <%= link_to "Delete", chef_recipe_path(@recipe), method: :delete, data: { confirm: "Are you sure you want to wa ha ha this recipe?" }, class: "btn btn-danger" %>
+      <% end %>
       <%= link_to "Back to List", chef_recipes_path, class: "btn btn-primary" %>
     </div>
   </div>

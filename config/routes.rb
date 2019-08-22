@@ -6,4 +6,8 @@ Rails.application.routes.draw do
   get '/signup', to: 'chef_profiles#new'
   resources :chef_profiles, except: [:new]
 
+  get '/login', to: 'sessions#new'
+  post '/login', to: 'sessions#create'
+  delete '/logout', to: 'sessions#destroy'
+
 end
