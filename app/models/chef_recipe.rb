@@ -12,4 +12,7 @@ class ChefRecipe < ApplicationRecord
   belongs_to :chef_profile
 
   default_scope -> { order(name: :asc) }
+
+  has_many :chef_recipe_ingredients
+  has_many :ingredients, through: :chef_recipe_ingredients
 end

@@ -12,5 +12,7 @@
 <%= link_to "New recipe", new_chef_recipe_path, class: "btn btn-primary" %>
 <% end %>
 <% if current_chef_profile.admin? %>
-<%= link_to "Chef List", chef_profiles_path, class: "btn btn-primary" %>
+<%= link_to "Delete", chef_profile_path(@chef), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+<%= link_to "Edit Profile", edit_chef_profile_path(@chef), class: "btn btn-primary" %>
 <% end %>
+<%= link_to "Chef List", chef_profiles_path, class: "btn btn-primary" %>

@@ -10,13 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_22_054014) do
+ActiveRecord::Schema.define(version: 2019_08_22_065444) do
 
   create_table "chef_profiles", force: :cascade do |t|
     t.string "chefname"
     t.string "email"
     t.string "password_digest"
     t.boolean "admin", default: false
+  end
+
+  create_table "chef_recipe_ingredients", force: :cascade do |t|
+    t.integer "chef_recipe_id"
+    t.integer "ingredient_id"
   end
 
   create_table "chef_recipes", force: :cascade do |t|
@@ -28,6 +33,10 @@ ActiveRecord::Schema.define(version: 2019_08_22_054014) do
   create_table "chef_users", force: :cascade do |t|
     t.string "name"
     t.string "email"
+  end
+
+  create_table "ingredients", force: :cascade do |t|
+    t.string "name"
   end
 
   create_table "users", force: :cascade do |t|
