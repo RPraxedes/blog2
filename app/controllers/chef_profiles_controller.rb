@@ -1,6 +1,7 @@
 class ChefProfilesController < ApplicationController
   before_action :find_chef, only: [:show, :edit, :update, :destroy]
-  before_action :require_same_user, only: [:edit, :destroy, :update]
+  before_action :require_same_user, only: [:edit, :update]
+  before_action :require_admin, only: [:destroy]
 
   def index
     @chef_profiles = ChefProfile.paginate(page: params[:page], per_page: 5)
@@ -37,9 +38,11 @@ class ChefProfilesController < ApplicationController
   end
 
   def destroy
-    @chef.destroy
-    flash[:danger] = "Chef profile and associated recipes deleted successfully"
-    redirect_to chef_profiles_path
+    if !@chef.admin?  # must not delete admin
+      @chef.destroy
+      flash[:danger] = "Chef profile and associated recipes deleted successfully"
+      redirect_to chef_profiles_path
+    end
   end
 
   private
@@ -53,9 +56,16 @@ class ChefProfilesController < ApplicationController
   end
 
   def require_same_user
-    if current_chef_profile != @chef_profile
+    if current_chef_profile != @chef_profile && !current_chef_profile.admin?
       flash[:danger] = "You can only modify your own profile."
       redirect_to chef_profiles_path
+    end
+  end
+
+  def require_admin
+    if logged_in? && !current_chef_profile.admin?
+      flash[:danger] = "Admins only!"
+      redirect_to root_path
     end
   end
 end

@@ -7,7 +7,9 @@
     <h3 class="card-title"><%= person.chefname %></h3>
     <p class="card-body"><%= person.email %></p>
     <%= link_to "View Profile", chef_profile_path(person), class: "btn btn-primary" %>
+    <% if current_chef_profile.admin? && person != current_chef_profile %>
     <%= link_to "Delete", chef_profile_path(person), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+    <% end %>
   </div>
 <% end %>
 <div class="row justify-content-center">

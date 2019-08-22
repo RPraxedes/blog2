@@ -53,7 +53,7 @@ class ChefRecipesController < ApplicationController
   end
 
   def require_same_user
-    if current_chef_profile != @recipe.chef_profile
+    if current_chef_profile != @recipe.chef_profile && !current_chef_profile.admin?
       flash[:danger] = "You can only modify your own recipes."
       redirect_to chef_recipes_path
     end

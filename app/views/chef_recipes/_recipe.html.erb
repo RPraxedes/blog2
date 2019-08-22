@@ -5,7 +5,7 @@
         <div class="card-body">
           <h4 class="card-title"><%= link_to recipe.name, chef_recipe_path(recipe) %></h4>
           <p class="card-text"><%= recipe.description %></p>
-          <% if logged_in? && current_chef_profile == recipe.chef_profile %>
+          <% if logged_in? && (current_chef_profile == recipe.chef_profile || current_chef_profile.admin) %>
           <%= link_to "Edit", edit_chef_recipe_path(recipe), class: "btn btn-warning" %>
           <%= link_to "Delete", chef_recipe_path(recipe), method: :delete, data: { confirm: "Are you sure you want to wa ha ha this recipe?" }, class: "btn btn-danger" %>
           <% end %>
