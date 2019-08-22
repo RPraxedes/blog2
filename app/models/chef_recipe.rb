@@ -15,4 +15,5 @@ class ChefRecipe < ApplicationRecord
 
   has_many :chef_recipe_ingredients
   has_many :ingredients, through: :chef_recipe_ingredients
+  has_many :comments, dependent: :destroy
 end

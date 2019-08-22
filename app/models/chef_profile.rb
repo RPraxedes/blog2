@@ -19,4 +19,5 @@ class ChefProfile < ApplicationRecord
   validates :password, presence: true, length: { minimum: 5 }, allow_nil: true
   default_scope -> { order(chefname: :asc) }
 
+  has_many :comments, dependent: :destroy
 end

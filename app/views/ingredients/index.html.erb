@@ -1,0 +1,17 @@
+<h1>Ingredients Index</h1>
+<div class="row justify-content-center">
+  <%= will_paginate(@ingredients, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer) %>
+</div>
+<% @ingredients.each do |ing| %>
+  <div class="card">
+    <h3 class="card-title"><%= ing.name.capitalize %></h3>
+    <%= link_to "View Ingredient", ingredient_path(ing), class: "btn btn-primary" %>
+    <%= pluralize(ing.chef_recipes.count, "recipe") if ing.chef_recipes %>
+    <% if current_chef_profile.admin? && person != current_chef_profile %>
+    <%= link_to "Edit", ingredient_path(ing), class: "btn btn-secondary" %>
+    <% end %>
+  </div>
+<% end %>
+<div class="row justify-content-center">
+  <%= will_paginate(@ingredients, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer) %>
+</div>
