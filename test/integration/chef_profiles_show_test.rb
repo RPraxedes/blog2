@@ -2,13 +2,14 @@ require 'test_helper'
 
 class ChefProfilesShowTest < ActionDispatch::IntegrationTest
   def setup
-    @chef = ChefProfile.create(chefname: "name", email: "mail@example.com", password: "password", password_confirmation: "password")
+    @chef = ChefProfile.create(chefname: "name", email: "mail@example.com", password: "password", password_confirmation: "password", admin: false)
     @recipe = ChefRecipe.create(name: "veg", description: "veggies", chef_profile_id: @chef.id)
     @recipe2 = @chef.chef_recipes.build(name: "chicken", description: "chicken")
     @recipe2.save
   end
 
   test "should get chef profiles show" do
+    sign_in_as(@chef, "password")
     get chef_profile_path(@chef)
     assert_template 'chef_profiles/show'
     assert_select "a[href=?]", chef_recipe_path(@recipe), text: @recipe.name
