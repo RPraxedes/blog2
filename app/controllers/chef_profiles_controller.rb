@@ -36,7 +36,7 @@ class ChefProfilesController < ApplicationController
 
   def destroy
     @chef.destroy
-    flash[:success] = "Chef profile deleted successfully"
+    flash[:danger] = "Chef profile and associated recipes deleted successfully"
     redirect_to chef_profiles_path
   end
 
